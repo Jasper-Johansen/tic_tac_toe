@@ -1,9 +1,5 @@
-const Gameboard ={
-    board: ["", "", "", "", "", "","", "", ""]
-    
-}
-
-const players = {
+const Gameboard = {
+    board: ["", "", "", "", "", "","", "", ""],
     player1: {name: "Player 1", symbol: "X"},
     player2: {name: "Player 2", symbol: "O"},
 }
@@ -39,17 +35,17 @@ function winGame(){
 }
 
 function declareWinner(){
-    if(winGame()===players.player1.symbol){
-        return players.player1.name + " wins the game";
+    if(winGame()===Gameboard.player1.symbol){
+        return Gameboard.player1.name + " wins the game";
     }else{
-        return players.player2.name + " wins the game";
+        return Gameboard.player2.name + " wins the game";
     }
 }
 
 function playGame(){
     while(!winGame()){
         let playOptions = [0,1,2,3,4,5,6,7,8];
-        let currentPlayer = players.player1;
+        let currentPlayer = Gameboard.player1;
         let currentSelection = playOptions[Math.floor(Math.random()*8)];
         Gameboard.board[currentSelection] = currentPlayer.symbol;
         playOptions.splice(playOptions.indexOf(currentSelection),1)
@@ -59,10 +55,11 @@ function playGame(){
             break;
         }
 
-        currentPlayer = players.player2;
-        currentSelection = playOptions[Math.floor(Math.random()*8)];
+        currentPlayer = Gameboard.player2;
+        //currentSelection = playOptions[Math.floor(Math.random()*8)];
+        currentSelection = parseInt(prompt("Symbol"))
         Gameboard.board[currentSelection] = currentPlayer.symbol;
-        playOptions.splice(playOptions[currentSelection],1)
+        playOptions.splice(playOptions.indexOf(currentSelection),1)
         console.log(Gameboard.board);
 
         if(winGame()){
